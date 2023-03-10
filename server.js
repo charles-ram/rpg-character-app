@@ -13,6 +13,9 @@ const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
 const sess = {
     secret: 'secret',
     cookie: {},
@@ -24,9 +27,6 @@ const sess = {
 };
 
 app.use(session(sess));
-
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
