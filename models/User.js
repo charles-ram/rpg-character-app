@@ -39,8 +39,14 @@ User.init(
     {
         hooks: {
             async beforeCreate(newUserData) {
-                 
-            }
+                 newUserData.password = await bycrypt.hash(newUserData.password, 10);
+                 return newUserData;
+            },
         },
+        sequelize,
+        timestamps: false,
+        freezeTableName:,
+        underscored: true,
+        modelName: 'user',
     }
 );
